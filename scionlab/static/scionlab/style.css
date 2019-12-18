@@ -83,9 +83,11 @@ pre {
 
 /* UserAS add/detail
 ------------------------------------*/
-/* Since there is no :first-of-class in CSS, this is a trick to say "all but the first .attachment" */
-.attachment ~ .attachment {
-  margin-top: 16px;
+#attachments-container {
+  column-count: 2;
+}
+#attachments-container .attachment {
+  margin-bottom: 8px;
 }
 /* Uncollapsed state */
 #id_user_as_form #new-ap-collapser .fa-minus-circle,

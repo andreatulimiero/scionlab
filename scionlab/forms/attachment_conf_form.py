@@ -120,8 +120,8 @@ class AttachmentConfFormHelper(FormHelper):
 
     conf_header = Div(
             Row(
-                Column('attachment_point', css_class='col-md-5'),
-                Column('use_vpn', css_class='col-md-5'),
+                Column('attachment_point', css_class='col-md-12'),
+                Column('use_vpn', css_class='col-md-12'),
                 'id'
                 ),
             css_class="card-header"
@@ -130,9 +130,9 @@ class AttachmentConfFormHelper(FormHelper):
     conf_body = Div(
             Row(
                 Column(AppendedText('public_ip', '<span class="fa fa-external-link"/>'),
-                       css_class='col-md-6'),
+                       css_class='col-md-7'),
                 Column(AppendedText('public_port', '<span class="fa fa-share-square-o"/>'),
-                       css_class='col-md-6')
+                       css_class='col-md-5')
                 ),
             Row(
                 HTML("""<button type="button" class="btn btn-link bind-row-collapser collapsed"
@@ -144,9 +144,9 @@ class AttachmentConfFormHelper(FormHelper):
                 ),
             Row(
                 Column(AppendedText('bind_ip', '<span class="fa fa-external-link-square"/>'),
-                       css_class='col-md-6'),
+                       css_class='col-md-7'),
                 Column(AppendedText('bind_port', '<span class="fa fa-share-square"/>'),
-                       css_class='col-md-6'),
+                       css_class='col-md-5'),
                 css_class="bind-row"
                 ),
             css_class="card-body"
@@ -166,12 +166,12 @@ class AttachmentConfFormHelper(FormHelper):
     @property
     def conf_collapser(self):
         return HTML("""<button type="button" id="new-ap-collapser"
-                               class="mt-3 btn btn-link collapsed"
+                               class="btn btn-link collapsed"
                                aria-expanded="false"
                                aria-controls="new-ap-form">
                            New attachment point
-                           <i class="mt-3 fa fa-plus-circle"></i>
-                           <i class="mt-3 fa fa-minus-circle"></i>
+                           <i class="fa fa-plus-circle"></i>
+                           <i class="fa fa-minus-circle"></i>
                        </button>""")
 
     def __init__(self, instance, userAS, *args, **kwargs):
@@ -205,7 +205,7 @@ class AttachmentConfForm(forms.ModelForm):
     Form for creating and updating a Link involving a UserAS
     """
     public_ip = forms.GenericIPAddressField(
-        help_text="Public IP address",
+        label="Public IP address",
         required=False
     )
     public_port = forms.IntegerField(
@@ -213,8 +213,7 @@ class AttachmentConfForm(forms.ModelForm):
         max_value=MAX_PORT,
         initial=50000,
         label="Public Port (UDP)",
-        help_text="The attachment point will use this port "
-                  "for the overlay link to your AS."
+        help_text="For the overlay link to your AS."
     )
     bind_ip = forms.GenericIPAddressField(
         label="Bind IP address",
